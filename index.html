@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html> 
+    <!--CSS code for changing colours, text aligment and other styling options for headings, buttons and input boxes -->
+    <style>
+        body{background-color: #003060;}
+        h1 {background-color: white;
+            text-align: center;
+            font-family: "Copperplate", fantasy;
+            font-size: 100px;
+        }
+        form{text-align: center;}
+        input{text-align: center;}
+    input[type="submit"], textarea {
+        background-color : white; 
+        border: outset;
+        display: inline-block;
+        font-size: 30px
+}
+    input[value="View database"], textarea {
+        background-color : white; 
+        border: none;
+        display: inline-block;
+        font-size: 100px;
+        border-radius: 10px;
+}
+    input[name="patientname"], textarea {
+        font-size: 20px;
+}
+    input[name="patientnumber"], textarea {
+        font-size: 20px
+}
+input[name="patientcondition"], textarea {
+        font-size: 20px
+}
+p{font-size: 22px;
+    font-family: "Copperplate", fantasy;
+    color: white;
+}
+h2{background-color: white;
+    text-align: center;
+    font-family: "Copperplate", fantasy;
+    font-size: 30px;
+}
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+    </style>
+<body>
+    <h1> Hospital Database</h1>
+    <br></br>
+    <img src="test.jpg" height="300" width="200" alt="test image">
+    <!-- Form will run code contained within the submit.php file after submission -->
+    <form action = "submit.php" method="post">
+        <p> Patient name: </p>
+        <!-- Input boxes for the database information to be entered into -->
+        <input type = "text" name="patientname" >
+        <br>
+        <p>Patient number:</p>
+        <input type="int" name="patientnumber" >
+        <br>
+        <p>Patient condition:</p>
+        <input type= "text" name ="patientcondition">
+        <br>
+        <br> </br>
+        <input type="submit" value="Submit">
+</form>
+    <h2> Search </h2>
+
+    <form action="search.php" method="post">
+        <p>Search </p> <input type="text" name="search"><br>
+        <!-- Displays different column catagories that the user can search chosen data from -->
+        <p> Column: </p> <select name="column">
+            <option value="patientname">Patient name</option>
+            <option value="patientnumber"> Patient number </option>
+            <option value="patientcondition"> Patient condition </option>
+            </select><br>
+            <br></br>
+            <input type="submit">
+            <br></br>
+</form>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+    <style>
+        body{background-color: #003060;}
+        table, th, td{border: solid;
+            width: 80%;
+            color: white;
+            text-align: center;
+        }
+
+    </style>
+<body>
+<table>
+    <tr>
+        <th>Patient Name             </th>
+        <th> Patient Number          </th>
+        <th> Patient Condition       </th>
+    <tr>
+    <?php
+    $conn = mysqli_connect("localhost", "root", "", "hospital patient database");
+    if ($conn-> connect_error) {
+        die("Connection failed:" . $conn-> connect_error);
+    }
+    $sql = "SELECT patientname, patientnumber, patientcondition from guestbook";
+    $result = $conn->query($sql);
+
+    if ($result-> num_rows > 0){
+        while ($row = $result-> fetch_assoc()) {
+            echo"<tr><td>". $row["patientname"]. "</td><td>". $row ["patientnumber"] . "</td><td>". $row["patientcondition"]. "</td></tr>";
+            
+        }
+        echo "</table>";
+    }
+    else {
+        echo "0 result";
+    }
+    $conn-> close()
+    ?>
+</body>
+</html>
