@@ -15,7 +15,7 @@
         <th>Patient Name             </th>
         <th> Patient Number          </th>
         <th> Patient Condition       </th>
-    <tr>
+    </tr>
     <?php
     $search = $_POST['search'];
     $column = $_POST['column'];
