@@ -23,7 +23,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $db = "hospitalpatientdatabase";
+    $db = "hospital patient database";
 
     $conn = new mysqli ($servername, $username, $password, $db);
 
