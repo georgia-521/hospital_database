@@ -41,17 +41,9 @@ h2{background-color: white;
     font-family: "Copperplate", fantasy;
     font-size: 30px;
 }
-.center{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
     </style>
 <body>
     <h1> Hospital Database</h1>
-    <br></br>
-    <img src="test.jpg" height="300" width="200" alt="test image">
     <!-- Form will run code contained within the submit.php file after submission -->
     <form action = "submit.php" method="post">
         <p> Patient name: </p>
@@ -79,47 +71,12 @@ h2{background-color: white;
             </select><br>
             <br></br>
             <input type="submit">
-            <br></br>
 </form>
+<!-- Button to view the whole database -->
+<form action="database.php" method="post">
+    <br> </br>
+    <input type="submit" value="View database">
+    </form>
 </body>
 </html>
-<!DOCTYPE html>
-<html>
-    <style>
-        body{background-color: #003060;}
-        table, th, td{border: solid;
-            width: 80%;
-            color: white;
-            text-align: center;
-        }
-
-    </style>
-<body>
-<table>
-    <tr>
-        <th>Patient Name             </th>
-        <th> Patient Number          </th>
-        <th> Patient Condition       </th>
-    <tr>
-    <?php
-    $conn = mysqli_connect("localhost", "root", "", "hospital patient database");
-    if ($conn-> connect_error) {
-        die("Connection failed:" . $conn-> connect_error);
-    }
-    $sql = "SELECT patientname, patientnumber, patientcondition from guestbook";
-    $result = $conn->query($sql);
-
-    if ($result-> num_rows > 0){
-        while ($row = $result-> fetch_assoc()) {
-            echo"<tr><td>". $row["patientname"]. "</td><td>". $row ["patientnumber"] . "</td><td>". $row["patientcondition"]. "</td></tr>";
-            
-        }
-        echo "</table>";
-    }
-    else {
-        echo "0 result";
-    }
-    $conn-> close();
-    ?>
-</body>
 </html>
