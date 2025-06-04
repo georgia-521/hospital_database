@@ -34,7 +34,7 @@
     else {
         echo "0 result";
     }
-    $conn-> close()
+    $conn-> close();
     ?>
 </body>
 </html>
